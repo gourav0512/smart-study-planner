@@ -1,4 +1,4 @@
-const API = "";
+const API = "https://smart-study-planner-2-oub2.onrender.com";
 const sections = ["loginSection", "goalSection", "detailsSection", "planSection", "pyqSection"];
 let user = null;
 let selectedGoal = "";
