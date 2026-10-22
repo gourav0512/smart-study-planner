@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">S</div>
+    <div>
+      <h1>Smart Study Planner</h1>
+      <p>Make every study session count</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="progress" aria-label="Workflow progress">
+      <span class="step active" id="step1">1. Login</span>
+      <span class="step" id="step2">2. Goal</span>
+      <span class="step" id="step3">3. Details</span>
+      <span class="step" id="step4">4. Plan & PYQs</span>
+    </div>
+
+    <div id="notice" class="notice hidden" role="status"></div>
+
+    <section id="loginSection" class="panel">
+      <div class="eyebrow">WELCOME, STUDENT</div>
+      <h2>Log in to get started</h2>
+      <p class="muted">Enter your email and password. First-time emails are saved as a demo account.</p>
+      <form id="loginForm">
+        <label for="email">Email address</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" minlength="4" placeholder="At least 4 characters" required>
+        <button type="submit" class="primary full">Continue</button>
+      </form>
+    </section>
+
+    <section id="goalSection" class="panel hidden">
+      <div class="eyebrow">STEP 1 OF 3</div>
+      <h2>What is your study goal?</h2>
+      <p class="muted">Choose the goal that best matches your current target.</p>
+      <div class="choice-grid">
+        <button class="choice" data-goal="Backlogs"><span class="choice-icon">↗</span><strong>Backlogs</strong><small>Clear pending subjects</small></button>
+        <button class="choice" data-goal="Safe Score"><span class="choice-icon">✓</span><strong>Safe Score</strong><small>Prepare for a safe pass</small></button>
+        <button class="choice" data-goal="Good Marks (90%)"><span class="choice-icon">★</span><strong>Good Marks (90%)</strong><small>Aim for 90% marks</small></button>
+      </div>
+      <p id="goalError" class="error"></p>
+      <button id="toDetails" class="primary">Continue to academic details</button>
+    </section>
+
+    <section id="detailsSection" class="panel hidden">
+      <div class="eyebrow">STEP 2 OF 3</div>
+      <h2>Academic details</h2>
+      <p class="muted">Tell us where you are in your course.</p>
+      <form id="detailsForm">
+        <label for="academicYear">Academic year</label>
+        <select id="academicYear" required>
+          <option value="">Select academic year</option>
+          <option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>
+        </select>
+        <label for="branch">Branch</label>
+        <select id="branch" required>
+          <option value="">Select branch</option>
+          <option>Computer Science</option><option>Information Technology</option><option>Electronics</option><option>Mechanical</option><option>Civil</option>
+        </select>
+        <label for="semester">Semester</label>
+        <select id="semester" required>
+          <option value="">Select semester</option>
+          <option value="1">Semester 1</option><option value="2">Semester 2</option>
+          <option value="3">Semester 3</option><option value="4">Semester 4</option>
+          <option value="5">Semester 5</option><option value="6">Semester 6</option>
+          <option value="7">Semester 7</option><option value="8">Semester 8</option>
+        </select>
+        <button type="submit" class="primary full">Generate my study plan</button>
+      </form>
+      <button class="text-button" data-back="goalSection">← Back</button>
+    </section>
+
+    <section id="planSection" class="panel hidden">
+      <div class="eyebrow">YOUR STUDY PLAN</div>
+      <h2>Here is your starting plan</h2>
+      <div id="planSummary" class="summary"></div>
+      <ol id="planList" class="plan-list"></ol>
+      <div class="divider"></div>
+      <h3>Choose a subject</h3>
+      <p class="muted">Select a subject to view sample PYQs and important questions.</p>
+      <label for="subjectSelect">Subject</label>
+      <select id="subjectSelect"><option value="">Loading subjects…</option></select>
+      <button id="openSubject" class="primary">Continue to PYQs</button>
+    </section>
+
+    <section id="pyqSection" class="panel hidden">
+      <div class="eyebrow">SUBJECT PREPARATION</div>
+      <h2 id="subjectHeading">PYQ section</h2>
+      <p class="muted">Choose how you want to view the sample questions.</p>
+      <div class="choice-grid two">
+        <button id="combinedBtn" class="choice"><span class="choice-icon">▤</span><strong>Combined PYQ</strong><small>Questions from all units together</small></button>
+        <button id="unitwiseBtn" class="choice"><span class="choice-icon">☷</span><strong>Unit-wise PYQ</strong><small>Weightage and questions by unit</small></button>
+      </div>
+      <div id="subjectContent" class="content-list"></div>
+      <button class="text-button" data-back="planSection">← Back to study plan</button>
+    </section>
+
+    <footer>Simple planning. Steady progress.</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
